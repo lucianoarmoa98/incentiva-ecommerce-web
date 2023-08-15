@@ -1,12 +1,20 @@
 {
   "files": {
-    "main.js": "/incentiva-ecommerce-web/static/js/main.f505ba43.js",
+    "main.css": "/incentiva-ecommerce-web/static/css/main.8eb20739.css",
+    "main.js": "/incentiva-ecommerce-web/static/js/main.1321c6ed.js",
+    "static/media/fondoTres.png": "/incentiva-ecommerce-web/static/media/fondoTres.0333d93eeb5bdc0b5f25.png",
+    "static/media/fondoDos.png": "/incentiva-ecommerce-web/static/media/fondoDos.07f7e8e9e86add25a500.png",
+    "static/media/fondoUno.png": "/incentiva-ecommerce-web/static/media/fondoUno.70d83fd62494abffea9f.png",
+    "static/media/fondoCuatro.png": "/incentiva-ecommerce-web/static/media/fondoCuatro.1bf9b2929bdec5c44574.png",
     "static/media/homeFondo.png": "/incentiva-ecommerce-web/static/media/homeFondo.c561ecf96f98000a3e90.png",
+    "static/media/fondo.jpg": "/incentiva-ecommerce-web/static/media/fondo.5044172fb7ea66ffda2e.jpg",
     "static/media/logo.png": "/incentiva-ecommerce-web/static/media/logo.9f25ed3874d7b91b4e65.png",
     "index.html": "/incentiva-ecommerce-web/index.html",
-    "main.f505ba43.js.map": "/incentiva-ecommerce-web/static/js/main.f505ba43.js.map"
+    "main.8eb20739.css.map": "/incentiva-ecommerce-web/static/css/main.8eb20739.css.map",
+    "main.1321c6ed.js.map": "/incentiva-ecommerce-web/static/js/main.1321c6ed.js.map"
   },
   "entrypoints": [
-    "static/js/main.f505ba43.js"
+    "static/css/main.8eb20739.css",
+    "static/js/main.1321c6ed.js"
   ]
 }
