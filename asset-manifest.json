@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/incentiva-ecommerce-web/static/js/main.e6dd58a3.js",
+    "main.js": "/incentiva-ecommerce-web/static/js/main.f505ba43.js",
     "static/media/homeFondo.png": "/incentiva-ecommerce-web/static/media/homeFondo.c561ecf96f98000a3e90.png",
     "static/media/logo.png": "/incentiva-ecommerce-web/static/media/logo.9f25ed3874d7b91b4e65.png",
     "index.html": "/incentiva-ecommerce-web/index.html",
-    "main.e6dd58a3.js.map": "/incentiva-ecommerce-web/static/js/main.e6dd58a3.js.map"
+    "main.f505ba43.js.map": "/incentiva-ecommerce-web/static/js/main.f505ba43.js.map"
   },
   "entrypoints": [
-    "static/js/main.e6dd58a3.js"
+    "static/js/main.f505ba43.js"
   ]
 }
