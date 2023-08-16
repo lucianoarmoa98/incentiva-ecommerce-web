@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { ProtectedRoutes, ProtectedRoutesLogin } from "./navigations/Autorizador"
+import LoginScreen from "./page/login/LoginScreen"
+import ErrorPage from "./page/errorPage/ErrorPage"
+import RutesScreen from "./navigations/RutesScreen"
+import { useDispatch } from "react-redux"
+import { setToken } from "./redux/actions/action"
 
 function App() {
+  const dispatch = useDispatch();
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <RutesScreen />
+  )
 }
 
-export default App;
+export default App
