@@ -37,7 +37,7 @@ function HeaderCustom({ children }) {
     const handleChange = (event, newValue) => {
         // setValue(newValue);
         if (newValue === 0) {
-            history('/incentiva-ecommerce-web');
+            history('/incentiva-ecommerce-web/inicio');
         } else if (newValue === 1) {
             history('/incentiva-ecommerce-web/hombres');
         } else if (newValue === 2) {

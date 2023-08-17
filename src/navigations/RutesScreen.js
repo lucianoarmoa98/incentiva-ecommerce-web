@@ -5,6 +5,7 @@ import ErrorPage from "../page/errorPage/ErrorPage"
 import DashboardHome from "../page/dashboardHome/DashboardHome"
 import DashboardHombres from "../page/dashboardHome/DashboarHombres"
 import DashboardMujeres from "../page/dashboardHome/DashboarMujeres"
+import InicioPage from "../page/inicio/InicioPage"
 
 
 function RutesScreen() {
@@ -17,7 +18,8 @@ function RutesScreen() {
         </Route> */}
 
         {/* <Route element={<ProtectedRoutes />}> */}
-          <Route path="/incentiva-ecommerce-web" element={<DashboardHome />} />
+          <Route path="/incentiva-ecommerce-web" element={<InicioPage />} />
+          <Route path="/incentiva-ecommerce-web/inicio" element={<DashboardHome />} />
           <Route path="/incentiva-ecommerce-web/hombres" element={<DashboardHombres />} />
           <Route path="/incentiva-ecommerce-web/mujeres" element={<DashboardMujeres />} />
           <Route path="*" element={<ErrorPage />} />

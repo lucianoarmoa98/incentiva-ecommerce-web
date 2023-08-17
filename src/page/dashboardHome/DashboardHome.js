@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import HeaderCustom from "../../components/HeaderCustom";
 import { useStylesAppBarra } from "../../styles/styles";
-import fondo1 from "../../assets/fondoUno.png";
-import fondo2 from "../../assets/fondoDos.png";
-import fondo3 from "../../assets/fondoTres.png";
-import fondo4 from "../../assets/fondoCuatro.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { Box, Typography, useMediaQuery, useTheme } from "@material-ui/core";
@@ -16,19 +12,19 @@ function DashboardHome() {
 
     const arrayImagenes = [
         {
-            url: fondo3,
+            url: 'https://res.cloudinary.com/dayx2unij/image/upload/v1692283713/an8sdshzha1t7s8wf5jl.png',
             descripcion: "Estilo en movimiento. Descubre nuestra nueva colección de ropa deportiva en Incentiva. Tu rendimiento, tu estilo, tu elección."
         },
         {
-            url: fondo1,
+            url: 'https://res.cloudinary.com/dayx2unij/image/upload/v1692283709/d4hs30jdrvj22fvkye1q.png',
             descripcion: "Dale vida a tus entrenamientos con nuestra ropa deportiva de alta calidad. Rendimiento y estilo en cada prenda, solo en Incentiva."
         },
         {
-            url: fondo2,
+            url: 'https://res.cloudinary.com/dayx2unij/image/upload/v1692283701/tp9usoisojhg6n4zamy2.png',
             descripcion: "Eleva tus rutinas con la última moda deportiva. Comodidad y diseño se unen en nuestra colección. ¡Descúbrela en Incentiva!"
         },
         {
-            url: fondo4,
+            url: 'https://res.cloudinary.com/dayx2unij/image/upload/v1692283701/g1k3mrzf5sgv4cmjxbyd.png',
             descripcion: "Marca la diferencia con nuestra ropa deportiva premium. Diseñada para destacar en el gimnasio y más allá. Incentiva, tu mejor elección."
         }
     ];
