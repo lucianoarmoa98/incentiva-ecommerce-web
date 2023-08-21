@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/incentiva-ecommerce-web/static/css/main.8eb20739.css",
-    "main.js": "/incentiva-ecommerce-web/static/js/main.11d5f42d.js",
+    "main.js": "/incentiva-ecommerce-web/static/js/main.94650843.js",
     "static/media/homeFondo.png": "/incentiva-ecommerce-web/static/media/homeFondo.c561ecf96f98000a3e90.png",
     "static/media/logo.png": "/incentiva-ecommerce-web/static/media/logo.9f25ed3874d7b91b4e65.png",
     "index.html": "/incentiva-ecommerce-web/index.html",
     "main.8eb20739.css.map": "/incentiva-ecommerce-web/static/css/main.8eb20739.css.map",
-    "main.11d5f42d.js.map": "/incentiva-ecommerce-web/static/js/main.11d5f42d.js.map"
+    "main.94650843.js.map": "/incentiva-ecommerce-web/static/js/main.94650843.js.map"
   },
   "entrypoints": [
     "static/css/main.8eb20739.css",
-    "static/js/main.11d5f42d.js"
+    "static/js/main.94650843.js"
   ]
 }
