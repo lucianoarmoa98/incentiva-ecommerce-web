@@ -10,7 +10,18 @@ import { setToken } from "./redux/actions/action"
 function App() {
   const dispatch = useDispatch();
 
+  const dataLocalStorage = () => {
+    let nameLocal = localStorage.getItem('dataUser');
+    if (nameLocal) {
+      dispatch(setToken(JSON.parse(nameLocal)));
+    } else {
+      return null;
+    }
+  }
 
+  useEffect(() => {
+    dataLocalStorage();
+  }, [dataLocalStorage])
   return (
     <RutesScreen />
   )

@@ -6,6 +6,8 @@ import DashboardHome from "../page/dashboardHome/DashboardHome"
 import DashboardHombres from "../page/dashboardHome/DashboarHombres"
 import DashboardMujeres from "../page/dashboardHome/DashboarMujeres"
 import InicioPage from "../page/inicio/InicioPage"
+import CardDetails from "../components/CardDetails"
+import DashboardAdmin from "../page/administrador/DashboardAdmin"
 
 
 function RutesScreen() {
@@ -14,15 +16,22 @@ function RutesScreen() {
     <BrowserRouter>
       <Routes>
         {/* <Route element={<ProtectedRoutesLogin />} >
-          <Route path="/" element={<LoginScreen />} />
+         <Route path="/incentiva-ecommerce-web/login" element={<LoginScreen />} />
         </Route> */}
 
+        <Route element={<ProtectedRoutes />} >
+          <Route path="/incentiva-ecommerce-web/admin" element={<DashboardAdmin />} />
+        </Route>
+
         {/* <Route element={<ProtectedRoutes />}> */}
-          <Route path="/incentiva-ecommerce-web" element={<InicioPage />} />
-          <Route path="/incentiva-ecommerce-web/inicio" element={<DashboardHome />} />
-          <Route path="/incentiva-ecommerce-web/hombres" element={<DashboardHombres />} />
-          <Route path="/incentiva-ecommerce-web/mujeres" element={<DashboardMujeres />} />
-          <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={<DashboardHome />} />
+        <Route path="/bienvenido" element={<InicioPage />} />
+        <Route path="/incentiva-ecommerce-web/hombres" element={<DashboardHombres />} />
+        <Route path="/incentiva-ecommerce-web/hombres/:detalles/:id" element={<CardDetails />} />
+        <Route path="/incentiva-ecommerce-web/mujeres" element={<DashboardMujeres />} />
+        <Route path="/incentiva-ecommerce-web/mujeres/:detalles/:id" element={<CardDetails />} />
+        <Route path="/incentiva-ecommerce-web/login" element={<LoginScreen />} />
+        <Route path="*" element={<ErrorPage />} />
         {/* </Route> */}
 
       </Routes>

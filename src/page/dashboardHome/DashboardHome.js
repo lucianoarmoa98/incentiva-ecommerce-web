@@ -5,6 +5,7 @@ import { useStylesAppBarra } from "../../styles/styles";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { Box, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import Categorias from "../../components/Categorias";
 
 function DashboardHome() {
     const theme = useTheme();
@@ -88,10 +89,12 @@ function DashboardHome() {
                             Desafía tus límites
                         </Typography>
 
-                        <Typography variant="h6" style={{ textAlign: 'center', marginTop: 20, marginBottom: 20 }}>
+                        <Typography variant="body1" style={{ textAlign: 'center', marginTop: 20, marginBottom: 20 }}>
                             Abraza el estilo. Encuentra tu impulso con la ropa deportiva de Incentiva. Eleva cada movimiento, conquista cada meta. Tu éxito, tu elección.
                         </Typography>
                     </Box>
+
+                    <Categorias />
 
             </HeaderCustom>
     );

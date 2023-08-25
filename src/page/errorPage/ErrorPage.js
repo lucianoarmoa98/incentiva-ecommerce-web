@@ -32,7 +32,7 @@ function ErrorPage() {
                 <Button
                     variant="contained"
                     color="primary"
-                    href="/incentiva-ecommerce-web"
+                    href="/"
                 >
                     Ir al inicio
                 </Button>

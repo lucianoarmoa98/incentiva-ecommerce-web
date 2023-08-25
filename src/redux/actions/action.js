@@ -4,3 +4,10 @@ export const setToken = (token) => {
         payload: token,
     };
 };
+
+export const setTabPosition = (tabPosition) => {
+    return {
+        type: 'TAB_POSITION',
+        payload: tabPosition,
+    };
+}

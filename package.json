@@ -2,7 +2,7 @@
   "name": "incentiva-ecommerce-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lucianoarmoa98.github.io/incentiva-ecommerce-web",
+  "homepage": "https://incentivagroups.com/",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "firebase": "^10.2.0",
     "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-axios": "^2.0.6",

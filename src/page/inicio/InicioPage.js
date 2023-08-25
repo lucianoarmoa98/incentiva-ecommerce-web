@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@material-ui/core";
-import { COLOR_BACKGROUND_VERDER_AGUA, notPageStyles } from "../../styles/styles";
+import { COLOR_BACKGROUND_GRIS, COLOR_BACKGROUND_VERDER_AGUA, notPageStyles } from "../../styles/styles";
 import logo from '../../assets/logo.png';
 import { Instagram, Web, WhatsApp } from "@material-ui/icons";
 import Footers from "../../components/Footers";
@@ -13,7 +13,7 @@ const InicioPage = () => {
     let history = useNavigate();
 
     const handleRuteDashboard = () => {
-        history('/incentiva-ecommerce-web/inicio');
+        history('/');
     }
 
     const handleUrlInstagram = () => {
@@ -43,7 +43,7 @@ const InicioPage = () => {
                     maxWidth: 500, margin: 'auto', marginTop: 20,
                 }}>
                     <Box style={{
-                        backgroundColor: '#ebeef1', borderRadius: 10, padding: 10,
+                        backgroundColor: COLOR_BACKGROUND_GRIS, borderRadius: 10, padding: 10,
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     }} onClick={handleRuteDashboard}>
                         <Web style={{ fontSize: 50, color: '#3f51b5' }} />
@@ -56,7 +56,7 @@ const InicioPage = () => {
                     </Box>
 
                     <Box style={{
-                        backgroundColor: '#ebeef1', borderRadius: 10, padding: 10, marginTop: 10,
+                        backgroundColor: COLOR_BACKGROUND_GRIS, borderRadius: 10, padding: 10, marginTop: 10,
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     }} onClick={handlePhoneWhatsApp}>
                         <WhatsApp style={{ fontSize: 50, color: COLOR_BACKGROUND_VERDER_AGUA }} />
@@ -69,7 +69,7 @@ const InicioPage = () => {
                     </Box>
 
                     <Box style={{
-                        backgroundColor: '#ebeef1', borderRadius: 10, padding: 10, marginTop: 10,
+                        backgroundColor: COLOR_BACKGROUND_GRIS, borderRadius: 10, padding: 10, marginTop: 10,
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     }} onClick={handleUrlInstagram}>
                         <Instagram style={{ fontSize: 50, color: '#d408e7' }} />

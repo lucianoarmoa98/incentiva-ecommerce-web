@@ -1,75 +1,137 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Backdrop, CircularProgress, withStyles, ListItemText, ListItemIcon, ListItem, List, Divider, Drawer, useTheme, useMediaQuery, Tabs, Tab, Button, Avatar } from '@material-ui/core';
-import { AccountCircle, Add, Assignment, CardGiftcard, ChevronLeft, ChevronRight, Home, Instagram, LockOpen, MenuSharp, Person, Update, WhatsApp, } from '@material-ui/icons';
+import { AccountCircle, Add, Assignment, CardGiftcard, ChevronLeft, ChevronRight, Home, Instagram, LockOpen, MenuSharp, Person, ShoppingCart, Update, WhatsApp, } from '@material-ui/icons';
 import { Tooltip, Box } from '@material-ui/core';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { COLOR_BACKGROUND_VERDER_AGUA, DrawerHeader, TEXT_HEADER, useStylesAppBarra } from '../styles/styles';
-import { useDispatch } from 'react-redux';
-import { setToken } from '../redux/actions/action';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../assets/logo.png';
 import Footers from './Footers';
+import { setTabPosition, setToken } from '../redux/actions/action';
 
 const drawerWidth = 240;
 
-function HeaderCustom({ children }) {
+function HeaderCustom({ children, id }) {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [cargando, setCargando] = useState('');
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(0);
-
+    const [value, setValue] = useState(useSelector(state => state.reducerGlobal.tabPosition));
 
 
     const theme = useTheme();
     const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
-    console.log("isMatch", isMatch);
     const classes = useStylesAppBarra();
     const isMenuOpen = Boolean(anchorEl);
 
     let history = useNavigate();
     let location = window.location.pathname;
-    console.log("location", location)
     const dispatch = useDispatch();
 
-    //---------------------------------acceder a los datos del LocalStorage
-    let dataView = window.localStorage.getItem('dataUser');
-    const { username } = JSON.parse(dataView || '{}');
+    let dataAdmin = localStorage.getItem('dataUser');
+
+    const handleStoragePosition = () => {
+        let position = localStorage.getItem('tabPosition');
+        console.log("position--ruta", position);
+
+
+        if (position !== null) {
+            if (location === '/') {
+                setValue(0);
+                localStorage.setItem('tabPosition', 0)
+            } else if (location === '/incentiva-ecommerce-web/hombres' || location === `/incentiva-ecommerce-web/hombres/detalles-hombres/${id}`) {
+                setValue(1);
+                localStorage.setItem('tabPosition', 1)
+            } else if (location === '/incentiva-ecommerce-web/mujeres' || location === `/incentiva-ecommerce-web/mujeres/detalles-mujeres/${id}`) {
+                setValue(2);
+                localStorage.setItem('tabPosition', 2)
+            } else if (location === '/incentiva-ecommerce-web/admin' || location === '/incentiva-ecommerce-web/admin') {
+                setValue(3);
+                localStorage.setItem('tabPosition', 3)
+            } else {
+                setValue(parseInt(position));
+                localStorage.setItem('tabPosition', parseInt(position))
+            }
+        } else {
+            setValue(0)
+        }
+    }
+
+    useEffect(() => {
+        handleStoragePosition();
+    }, [handleStoragePosition])
+
+    const handleSetPosition = (value) => {
+        //setear el valor del tab al state global
+        dispatch(setTabPosition(value))
+        //setear el valor del tab al localstorage
+        localStorage.setItem('tabPosition', value)
+    }
+
+
+
 
     const handleChange = (event, newValue) => {
         // setValue(newValue);
         if (newValue === 0) {
-            history('/incentiva-ecommerce-web/inicio');
+            // setValue(newValue);
+            handleSetPosition(newValue)
+            history('/');
         } else if (newValue === 1) {
+            // setValue(newValue);
+            handleSetPosition(newValue)
             history('/incentiva-ecommerce-web/hombres');
         } else if (newValue === 2) {
+            // setValue(newValue);
+            handleSetPosition(newValue)
             history('/incentiva-ecommerce-web/mujeres');
+        } else if (newValue === 3) {
+            // setValue(newValue);
+            handleSetPosition(newValue)
+            history('/incentiva-ecommerce-web/admin');
         }
     };
-
-    useEffect(() => {
-        if (location === '/incentiva-ecommerce-web') {
-            setValue(0);
-        } else if (location === '/incentiva-ecommerce-web/hombres') {
-            setValue(1);
-        } else if (location === '/incentiva-ecommerce-web/mujeres') {
-            setValue(2);
-        }
-    }, [location])
 
 
     //-------------------------------rutas
     const handleHome = () => {
-        history('/incentiva-ecommerce-web');
+        history('/');
     }
 
     const handleHombres = () => {
         history('/incentiva-ecommerce-web/hombres');
     }
 
-
-    //--------------------------------cerrar sesion de login
     const handleMujeres = () => {
         history('/incentiva-ecommerce-web/mujeres');
     }
+
+    const handleLogin = () => {
+        history('/incentiva-ecommerce-web/login');
+    }
+
+
+    //-------------------------------rutas externas
+    const handleUrlInstagram = () => {
+        let url = 'https://www.instagram.com/incentivapy_';
+
+        //abrir en una nueva pestaña
+        window.open(url, '_blank');
+    }
+
+    const handlePhoneWhatsApp = () => {
+        let url = 'https://api.whatsapp.com/send?phone=595991905663&text=Hola%20Incentiva%20Py';
+
+        //abrir en una nueva pestaña
+        window.open(url, '_blank');
+    }
+
+    const handleClose = () => {
+        localStorage.removeItem('dataUser');
+        dispatch(setToken(null));
+        history('/');
+    };
+
+
+
 
 
     //--------------------------------abrir menu de usuario
@@ -218,17 +280,57 @@ function HeaderCustom({ children }) {
                             <Tab label="Inicio" />
                             <Tab label="Hombres" />
                             <Tab label="Mujeres" />
+                            {dataAdmin ? <Tab label="Cargar Catálogo" /> : null}
                         </Tabs>
 
 
 
                         <div style={{ display: 'flex', alignItems: 'center' }}>
+                            {dataAdmin &&
+                                <IconButton
+                                    size="large"
+                                    edge="end"
+                                    aria-label="account of current user"
+                                    aria-haspopup="true"
+                                    color="inherit"
+                                    onClick={handleClose}
+                                >
+                                    {/*agregar icono de cerrar sesion*/}
+                                    <LockOpen style={{ color: TEXT_HEADER }} />
+                                </IconButton>
+                            }
+
                             <IconButton
                                 size="large"
                                 edge="end"
                                 aria-label="account of current user"
                                 aria-haspopup="true"
                                 color="inherit"
+                            // onClick={handleClose}
+                            >
+                                {/*agregar icono de compras*/}
+                                <ShoppingCart style={{ color: TEXT_HEADER }} />
+                            </IconButton>
+
+                            <IconButton
+                                size="large"
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-haspopup="true"
+                                color="inherit"
+                                onClick={handleLogin}
+                            >
+                                {/*agregar icono de usuario*/}
+                                <AccountCircle style={{ color: TEXT_HEADER }} />
+                            </IconButton>
+
+                            <IconButton
+                                size="large"
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-haspopup="true"
+                                color="inherit"
+                                onClick={handlePhoneWhatsApp}
                             >
                                 {/*agregar icono de whatsapp*/}
                                 <WhatsApp style={{ color: COLOR_BACKGROUND_VERDER_AGUA }} />
@@ -241,9 +343,11 @@ function HeaderCustom({ children }) {
                                 aria-label="account of current user"
                                 aria-haspopup="true"
                                 color="inherit"
+                                onClick={handleUrlInstagram}
+                            // style={{ marginLeft: 10 }}
                             >
                                 {/*agregar icono de instagram*/}
-                                <Instagram style={{ color: '#d408e7', marginLeft: 10 }} />
+                                <Instagram style={{ color: '#d408e7' }} />
                             </IconButton>
                         </div>
                     </div>
@@ -251,15 +355,11 @@ function HeaderCustom({ children }) {
             </Toolbar>
 
 
-            <div style={{ height: '100vh' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 {children}
             </div>
 
             <Footers />
-
-            <Backdrop className={classes.backdrop} open={cargando}>
-                <CircularProgress color="inherit" />
-            </Backdrop>
         </Box>
     );
 }

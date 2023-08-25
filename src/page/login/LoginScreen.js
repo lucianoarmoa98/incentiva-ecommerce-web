@@ -1,29 +1,32 @@
 import React, { useState } from 'react'
-import { Backdrop, Button, CircularProgress, Container, CssBaseline, IconButton, InputAdornment, makeStyles, Paper, Snackbar, TextField, Typography, withStyles } from '@material-ui/core'
+import { Backdrop, Box, Button, CircularProgress, Container, CssBaseline, IconButton, InputAdornment, makeStyles, Paper, Snackbar, TextField, Typography, withStyles } from '@material-ui/core'
 import { useNavigate } from "react-router-dom";
-// import { useStylesLogin, CssTextField } from '../../styles/styles';
-import { CssTextField, useStylesLogin } from '../../styles/styles';
+import { COLOR_BACKGROUND_GRIS, CssTextField, useStylesLogin } from '../../styles/styles';
 import { Alert } from '@material-ui/lab';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 // import '../../styles/globalCss.css';
 import { postLogin } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../redux/actions/action';
+import logo from '../../assets/logo.png';
 
-
-
+const credentials = {
+    username: 'adminIcentiva',
+    password: 'Z3JvdXBzSW5jZW50MjAyMyQ='
+}
 
 
 function LoginScreen({ }) {
-    const [userName, setUserName] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [open, setOpen] = React.useState(false);
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const [open, setOpen] = useState(false);
     const [severity, setSeverity] = useState('');
     const [mensaje, setMensaje] = useState('');
     const [cargando, setCargando] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
     const classes = useStylesLogin();
+
 
     const dispatch = useDispatch();
 
@@ -60,42 +63,32 @@ function LoginScreen({ }) {
             setSeverity('error');
             setMensaje('Ingrese usuario y contraseña');
         } else {
-            //-----------------------------datos de login para enviar a backend
+            //-----------------------------datos de login para verificar con credentials
             let body = {};
             body.usernameOrEmail = userName;
             body.password = password;
 
+            //desencriptar password
+            let dataDesencriptada = atob(credentials.password);
+
             setCargando(true);
+            //comparar datos de login con credentials
+            if (userName === credentials.username && password === dataDesencriptada) {
+                setCargando(false);
+                dispatch(setToken(true));
+                localStorage.setItem('dataUser', true);
+                // //ir a la ruta de administrador, sin poder regresar a login
+                history('/incentiva-ecommerce-web/admin', { replace: true });
+            } else {
+                console.log("datos incorrectos", body);
+                setCargando(false);
+                setOpen(true);
+                setSeverity('error');
+                setMensaje('Usuario o contraseña incorrecta');
+            }
 
-            postLogin(body)
-                .then(response => {
-                    if (response.data.status === "Activo") {
-                        localStorage.setItem('dataUser', JSON.stringify(response.data));
-                        // setTimeout(() => setCargando(false), 2000);
-                        setCargando(false);
-                        setOpen(true);
-                        setSeverity('success');
-                        setMensaje(response.data.mensaje);
-                        setUserName("");
-                        setPassword("");
 
-                        setTimeout(() => dispatch(setToken(response.data)), 1150);
 
-                    } else {
-                        setOpen(true);
-                        setSeverity('error');
-                        setMensaje("Usuario inactivo, contacte al administrador");
-                        setCargando(false);
-                    }
-
-                })
-                .catch(error => {
-                    console.log("errorSesion", error);
-                    setOpen(true);
-                    setSeverity('error');
-                    setMensaje(error.mensaje);
-                    setCargando(false);
-                })
         }
     }
 
@@ -119,9 +112,13 @@ function LoginScreen({ }) {
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Paper className={classes.paper}>
-                        <Typography component="h1" variant="h5" align='center'>
-                            Iniciar sesion
-                        </Typography>
+
+                        <Box style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }}>
+                            <img src={logo} alt="logo" style={{ height: 130, width: 200 }} />
+                        </Box>
 
                         <div className={classes.form} >
                             <CssTextField
@@ -175,24 +172,15 @@ function LoginScreen({ }) {
                                     fullWidth
                                     onClick={handleSubmit}
                                     variant="contained"
-                                    className={classes.submit}
+                                    className={classes.buttonCrearCuenta}
                                 >
                                     Iniciar sesión
                                 </Button>
-
-
-                                <Button
-                                    fullWidth
-                                    onClick={handleSubmit}
-                                    variant="contained"
-                                    className={classes.buttonCrearCuenta}
-                                >
-                                    Crear cuenta
-                                </Button>
                             </div>
 
-                            <p><b>Versión: {'0.0.1'}</b></p>
-
+                            <Typography variant="body2" display="block" gutterBottom align="center" style={{ marginTop: 10, fontWeight: 'bold' }}>
+                                Versión: {'1.0.0.0'}
+                            </Typography>
                         </div>
                     </Paper>
                 </Container>

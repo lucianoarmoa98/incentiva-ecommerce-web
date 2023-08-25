@@ -4,7 +4,7 @@ import imgFondo from '../assets/homeFondo.png';
 
 export const COLOR_BACKGROUND_VERDER_AGUA = '#48c590';
 export const COLOR_BACKGROUND_VERDE_CLARO = "#e2f7ed";
-export const COLOR_BACKGROUND_GRIS = "#e4e5e6";
+export const COLOR_BACKGROUND_GRIS = "#ebeef1";
 export const COLOR_BACKGROUND_GRIS_OSCURO = "#c1c1c1";
 export const TEXT_HEADER = "#4a4a4a";//#262626
 
@@ -53,21 +53,11 @@ export const useStylesLogin = makeStyles(theme => ({
         justifyContent: 'center',
     },
     paper: {
-        // marginTop: theme.spacing(8),
         padding: theme.spacing(3),
-        // display: "flex",
-        // flexDirection: "column",
-        // alignItems: "center",
-        borderRadius: "14px",
-        //background: "#D3D3D3",
+        borderRadius: 10,
     },
     imagFondoLogin: {
-        backgroundImage: `url(${imgFondo})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        // height: '100vh',
-        height: altoPantalla,
+        backgroundColor: '#f2f9f9'
     },
     avatar: {
         margin: theme.spacing(1),
@@ -75,7 +65,7 @@ export const useStylesLogin = makeStyles(theme => ({
     },
     form: {
         width: "100%",
-        marginTop: theme.spacing(1)
+        // marginTop: theme.spacing(1)
     },
     submit: {
         // margin: theme.spacing(3, 0, 2),
@@ -87,8 +77,9 @@ export const useStylesLogin = makeStyles(theme => ({
         color: '#fff',
     },
     buttonSpacing: {
-        display: 'grid',
-        gap: '10px',
+        marginTop: theme.spacing(2),
+        // display: 'grid',
+        // gap: '10px',
     },
     buttonCrearCuenta: {
         background: COLOR_BACKGROUND_VERDER_AGUA,
